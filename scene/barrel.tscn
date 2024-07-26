@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7syjncmfrtuc"]
+
+[ext_resource type="Script" path="res://script/barrel.gd" id="1_ua20l"]
+[ext_resource type="Texture2D" uid="uid://cy4og7ilm4qas" path="res://assets/onlyBarral.png" id="2_s0sl4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c672m"]
+radius = 38.0
+height = 110.0
+
+[node name="barrel" type="Area2D" groups=["loseGame"]]
+position = Vector2(0, -2)
+script = ExtResource("1_ua20l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 3)
+shape = SubResource("CapsuleShape2D_c672m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 12)
+scale = Vector2(2.01925, 1.93561)
+texture = ExtResource("2_s0sl4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.565
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

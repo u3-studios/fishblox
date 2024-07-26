@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://3utcl77mvedq"]
+
+[ext_resource type="Script" path="res://script/Area2D.gd" id="1_73mev"]
+[ext_resource type="Texture2D" uid="uid://mfpj6ca53m4m" path="res://assets/common fish 1.png" id="2_8a8rd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y358s"]
+radius = 21.02
+height = 132.035
+
+[node name="Area2D" type="Area2D" groups=["fish"]]
+script = ExtResource("1_73mev")
+
+[node name="fishhitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 5)
+rotation = -1.5602
+shape = SubResource("CapsuleShape2D_y358s")
+
+[node name="fish" type="Sprite2D" parent="."]
+position = Vector2(69.0002, 87.9997)
+scale = Vector2(0.185325, 0.185325)
+texture = ExtResource("2_8a8rd")

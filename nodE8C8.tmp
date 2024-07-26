@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkqvaiopqwuo1"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_5cuig"]
+[ext_resource type="PackedScene" uid="uid://cjkc7mdn813hh" path="res://maincharacter.tscn" id="2_kid6p"]
+[ext_resource type="Texture2D" uid="uid://280sqny4sbr" path="res://hook.png" id="3_gp3xr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dm2al"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v2u24"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6j8ot"]
+radius = 41.7852
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3g0lt"]
+_surfaces = [{
+"2d": true,
+"aabb": AABB(-38.3, -275.2, 0, 17.3, 20.2, 0),
+"attribute_data": PackedByteArray(125, 63, 245, 62, 140, 74, 106, 62, 125, 63, 245, 62, 180, 200, 118, 62, 88, 57, 244, 62, 180, 200, 118, 62, 33, 176, 242, 62, 72, 225, 122, 62, 123, 20, 238, 62, 72, 225, 122, 62, 123, 20, 238, 62, 89, 134, 120, 62, 242, 99, 236, 62, 179, 234, 115, 62, 31, 244, 236, 62, 252, 169, 113, 62, 197, 32, 240, 62, 252, 169, 113, 62, 197, 32, 240, 62, 140, 74, 106, 62, 233, 38, 241, 62, 103, 68, 105, 62, 233, 38, 241, 62, 249, 49, 102, 62),
+"format": 34393296913,
+"index_count": 30,
+"index_data": PackedByteArray(11, 0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 11, 0, 1, 0, 2, 0, 4, 0, 5, 0, 5, 0, 7, 0, 8, 0, 8, 0, 10, 0, 1, 0, 2, 0, 5, 0, 8, 0, 8, 0, 1, 0, 2, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray(0, 0, 168, 193, 154, 153, 135, 195, 0, 0, 168, 193, 0, 128, 129, 195, 0, 0, 184, 193, 0, 128, 129, 195, 0, 0, 208, 193, 0, 0, 127, 195, 0, 0, 12, 194, 0, 0, 127, 195, 0, 0, 12, 194, 102, 166, 128, 195, 48, 51, 25, 194, 102, 230, 130, 195, 208, 204, 20, 194, 0, 0, 132, 195, 0, 0, 248, 193, 0, 0, 132, 195, 0, 0, 248, 193, 154, 153, 135, 195, 0, 0, 232, 193, 154, 25, 136, 195, 0, 0, 232, 193, 154, 153, 137, 195)
+}]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8y1an"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5cuig")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-3, 205)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.855261, 0.860344, 0.874254, 1)
+top_level = true
+position = Vector2(1, 111.125)
+scale = Vector2(1172.25, 17.75)
+mesh = SubResource("BoxMesh_dm2al")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+modulate = Color(0.0383972, 0.0383972, 0.0383972, 1)
+position = Vector2(15, 103)
+scale = Vector2(172.911, 12.0375)
+mesh = SubResource("SphereMesh_v2u24")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="spawner" type="Marker2D" parent="Sprite2D"]
+position = Vector2(879, 173)
+scale = Vector2(-0.412202, 0.0856527)
+gizmo_extents = 27.5
+
+[node name="Timer" type="Timer" parent="Sprite2D/spawner"]
+wait_time = 2.956
+autostart = true
+
+[node name="main_character" parent="." instance=ExtResource("2_kid6p")]
+position = Vector2(604, 602)
+
+[node name="fishingLine" type="Line2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(9.1744, -46.3525)
+scale = Vector2(0.2844, 1.23272)
+points = PackedVector2Array(14, 33, 14, 189.179)
+
+[node name="Area2D" type="Area2D" parent="." groups=["hook"]]
+position = Vector2(15, 185)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-13, 28)
+shape = SubResource("CircleShape2D_6j8ot")
+
+[node name="Sprite2D2" type="MeshInstance2D" parent="Area2D"]
+texture_filter = 1
+position = Vector2(146, 1523)
+scale = Vector2(5.64912, 5.64912)
+mesh = SubResource("ArrayMesh_3g0lt")
+texture = ExtResource("3_gp3xr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Label" type="Label" parent="Timer"]
+visible = false
+offset_left = -220.0
+offset_top = -39.0
+offset_right = 230.0
+offset_bottom = 420.0
+theme_override_font_sizes/font_size = 60
+
+[node name="score" type="Label" parent="."]
+offset_left = 184.0
+offset_top = -75.0
+offset_right = 389.0
+offset_bottom = 8.0
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
+modulate = Color(0.896012, 0.95747, 0.96286, 1)
+position = Vector2(153, 81)
+scale = Vector2(107.75, 45.75)
+mesh = SubResource("BoxMesh_8y1an")
+
+[connection signal="timeout" from="Sprite2D/spawner/Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7pt46k0ct3al"]
+
+[ext_resource type="Script" path="res://script/goldenfish.gd" id="1_5re3c"]
+[ext_resource type="Texture2D" uid="uid://b3p1k3d431ldh" path="res://assets/goldenfish.png" id="2_bheme"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufm4d"]
+radius = 44.998
+height = 240.16
+
+[node name="Area2D" type="Area2D" groups=["goldfish"]]
+script = ExtResource("1_5re3c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bheme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -123)
+rotation = -1.56133
+shape = SubResource("CapsuleShape2D_ufm4d")
