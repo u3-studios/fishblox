@@ -105,6 +105,9 @@ func _on_area_2d_area_entered(area):
 		area.ismoving = false
 		gameIsRunning = false
 		popupMenu.visible = true
+		JavaScriptBridge.eval("""
+		fetch(`https://gamesbot.u3.style/highscore/"""+str(points)+"""?game=icefishing&${window.location.search.substr(1)}`)
+		""")
 		
 	
 	displayScoreLabel.text = str(points)
