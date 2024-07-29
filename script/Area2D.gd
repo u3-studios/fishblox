@@ -1,6 +1,5 @@
 extends Area2D
 
-@onready var line = $fishingline
 @onready var fish = $fish
 @onready var hitbox = $fishhitbox
 @export var direction = false
