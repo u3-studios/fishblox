@@ -8,7 +8,7 @@ var points = int(0)
 @onready var area_2d = $Area2D
 @onready var label = $Timer/Label
 @onready var timer = $Timer
-var CommonFish = preload("res://golden_fish.tscn")
+var CommonFish = preload("res://goldenfish.tscn")
 
 func _ready():
 	pass # Replace with function body.
